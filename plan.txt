@@ -1,8 +1,9 @@
-
 [ x ] cria uma interface grafica com tkinter q pede a localizacao do arquivo de texto
 
 [ X ] após selecionado o arquivo no input, uma variavel deve armazenar o conteudo desse texto transformar em binario
 
-após isso, faça com que o arquivo baixe automaticamente para a pasta atual que ele abriu o arquivo
+[ X ] após isso, faça com que o arquivo baixe automaticamente para a pasta atual que ele abriu o arquivo
 
-nomeie ele como binary_translation.txt
+[ X ] nomeie ele como binary_translation.txt
+
+[  ] permita não sobrescrever o arquivo, mas sim criar outros. Ex: binary_translation(1).txt, binary_translation(2).txt ...
