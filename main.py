@@ -4,7 +4,10 @@ import tkinter as tk
 def text_to_bin():
     filename = filedialog.askopenfile()
     if filename:
-        print(filename)
+        filename = str(filename).split(' ')[1].replace('name=', '')
+        final_filename = filename.replace("'", '')
+        print(final_filename)
+
     else:
         print('No file selected.')
 
