@@ -2,9 +2,9 @@ from tkinter import filedialog
 import tkinter as tk
 import os
 
-current_path = os.getcwd()
+newFileName = 'binary_translation.txt'
 
-def text_to_bin():
+def file_path():
     filename = filedialog.askopenfile()
     if filename:
         filename = str(filename).split(' ')[1].replace('name=', '')
@@ -17,22 +17,23 @@ def text_to_bin():
 root = tk.Tk()
 root.title('Text to binary translator')
 
-button = tk.Button(root, text='Search txt file', command=text_to_bin)
+button = tk.Button(root, text='Search txt file', command=file_path)
 button.pack(pady=20)
 
-txt_file = text_to_bin()
+txt_file = file_path()
+newFile = open(newFileName, 'w')
 
 with open(txt_file) as file:
     for line in file:
         line_bin = ' '.join(format(ord(char), '08b') for char in line.strip())
-        print(line_bin)
+        newFile.write(line_bin)
+
 file.close()
 
+# CORRIGIR
+# i = 1
+# while os.path.isfile(newFileName):
+#     newFileName = f'{newFileName}({i})'
+#     i += 1
+
 root.mainloop()
-
-# with open(filename) as file:
-#     for line in file:
-#         line_bin = ' '.join(format(ord(char), '08b') for char in line.strip())
-#         print(line_bin)
-
-# file.close()
