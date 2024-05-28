@@ -7,9 +7,8 @@ newFileName = 'binary_translation.txt'
 def file_path():
     filename = filedialog.askopenfile()
     if filename:
-        filename = str(filename).split(' ')[1].replace('name=', '')
-        final_filename = filename.replace("'", '')
-        return final_filename
+        filename = filename.name
+        return filename
 
     else:
         print('No file selected.')
@@ -21,19 +20,24 @@ button = tk.Button(root, text='Search txt file', command=file_path)
 button.pack(pady=20)
 
 txt_file = file_path()
-newFile = open(newFileName, 'w')
 
-with open(txt_file) as file:
-    for line in file:
-        line_bin = ' '.join(format(ord(char), '08b') for char in line.strip())
-        newFile.write(line_bin)
+if txt_file:
 
-file.close()
+    base_name, extension = os.path.splitext(newFileName)
+    i = 1
+    finalFileName = newFileName
 
-# CORRIGIR
-# i = 1
-# while os.path.isfile(newFileName):
-#     newFileName = f'{newFileName}({i})'
-#     i += 1
+    while os.path.isfile(finalFileName):
+        finalFileName = f'{base_name}{i}{extension}'
+        i += 1
+
+    with open(finalFileName, 'w') as newFile, open(txt_file) as file:
+        for line in file:
+            line_bin = ' '.join(format(ord(char), '08b') for char in line.strip())
+            newFile.write(line_bin + '\n')
+            
+    file.close()
+
+    print('File saved successfully!')
 
 root.mainloop()
